@@ -8,7 +8,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded());
 
-MongoClient.connect(process.env.MONGODB_URI || "mongodb://192.168.1.164:27017/shoppingList", (err, client) => {
+MongoClient.connect("mongodb+srv://Admin:oR3I2IU2wH8TuRkcuJLvxh9PEK0IIvPbCe6c@shoppinglist.vyimj.mongodb.net/shoppingList", (err, client) => {
     if (err) return console.log(err);
     console.log("Connected to database");
 
@@ -82,10 +82,9 @@ MongoClient.connect(process.env.MONGODB_URI || "mongodb://192.168.1.164:27017/sh
 });
 
 // Serve static assets if in production
-if(process.env.NODE_ENV === "production") {
-    app.use(express.static("../build"));
-}
+// if(process.env.NODE_ENV === "production") {
+//     app.use(express.static("../build"));
+// }
 
 const PORT = process.env.PORT || 8080;
-// Listening on port 3000
-app.listen(PORT, "0.0.0.0");
+app.listen(5000);
