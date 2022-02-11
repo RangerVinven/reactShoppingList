@@ -24,7 +24,11 @@ class ShoppingListContainer extends React.Component {
 
     getShoppingList = () => {
         const axios = require('axios').default;
-        axios.get("http://localhost:5000/v1/getShoppingList").then(response => {
+        axios.get("http://localhost:5000/v1/getShoppingList", {
+            headers: {
+                "Access-Control-Allow-Origin": "*"
+            }
+        }).then(response => {
             const shoppingListItems = response.data;
             console.log(shoppingListItems);
 
