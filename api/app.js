@@ -81,10 +81,4 @@ MongoClient.connect("mongodb+srv://Admin:oR3I2IU2wH8TuRkcuJLvxh9PEK0IIvPbCe6c@sh
 
 });
 
-// Serve static assets if in production
-// if(process.env.NODE_ENV === "production") {
-//     app.use(express.static("../build"));
-// }
-
-const PORT = process.env.PORT || 8080;
 app.listen(5000);
