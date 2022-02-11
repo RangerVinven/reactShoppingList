@@ -24,7 +24,7 @@ class ShoppingListContainer extends React.Component {
 
     getShoppingList = () => {
         const axios = require('axios').default;
-        axios.get("http://192.168.1.164:5000/v1/getShoppingList").then(response => {
+        axios.get("http://localhost:5000/v1/getShoppingList").then(response => {
             const shoppingListItems = response.data;
             console.log(shoppingListItems);
 
@@ -38,7 +38,7 @@ class ShoppingListContainer extends React.Component {
 
     addToDatabase = (name, itemAmount, itemId) => {
         const axios = require('axios').default;
-        axios.post("http://192.168.1.164:5000/v1/addToDatabase", {
+        axios.post("http://localhost:5000/v1/addToDatabase", {
             _id: itemId,
             amount: itemAmount,
             itemName: name,
@@ -52,7 +52,7 @@ class ShoppingListContainer extends React.Component {
 
     removeFromDatabase = itemId => {
         const axios = require('axios').default;
-        // axios.delete("http://192.168.1.164:5000/v1/removeShoppingItem", {
+        // axios.delete("http://localhost:5000/v1/removeShoppingItem", {
         //     data: {
         //         _id: itemId
         //     }
@@ -62,7 +62,7 @@ class ShoppingListContainer extends React.Component {
         //     console.log(err);
         // });
 
-        axios.delete("http://192.168.1.164:5000/v1/removeShoppingItem", {
+        axios.delete("http://localhost:5000/v1/removeShoppingItem", {
             _id: itemId
         }).then(response => {
             console.log(response);
@@ -109,13 +109,13 @@ class ShoppingListContainer extends React.Component {
                 const axios = require('axios').default;
                 
                 if(item.got) {
-                    axios.put(`http://192.168.1.164:5000/v1/changeGot/:${itemId}/true`).then(response => {
+                    axios.put(`http://localhost:5000/v1/changeGot/:${itemId}/true`).then(response => {
                     console.log("Called");
                     }).catch(err => {
                         console.log(err);
                     });
                 } else {
-                    axios.put(`http://192.168.1.164:5000/v1/changeGot/:${itemId}/false`).then(response => {
+                    axios.put(`http://localhost:5000/v1/changeGot/:${itemId}/false`).then(response => {
                     console.log("Called");
                     }).catch(err => {
                         console.log(err);
@@ -143,7 +143,7 @@ class ShoppingListContainer extends React.Component {
 
                 // Calls the api to update the amount in the database
                 const axios = require('axios').default;
-                axios.put(`http://192.168.1.164:5000/v1/changeAmount/:${id}/${item.amount}`).then(response => {
+                axios.put(`http://localhost:5000/v1/changeAmount/:${id}/${item.amount}`).then(response => {
                     console.log("Called");
                 }).catch(err => {
                     console.log(err);
@@ -178,7 +178,7 @@ class ShoppingListContainer extends React.Component {
 
                     // Calls the api to update the amount in the database
                     const axios = require('axios').default;
-                    axios.put(`http://192.168.1.164:5000/v1/changeAmount/:${id}/${item.amount}`).then(response => {
+                    axios.put(`http://localhost:5000/v1/changeAmount/:${id}/${item.amount}`).then(response => {
                         console.log("Called");
                     }).catch(err => {
                         console.log(err);
@@ -188,7 +188,7 @@ class ShoppingListContainer extends React.Component {
                     newShoppingList.splice(index, 1);
                     
                     const axios = require('axios').default;
-                    axios.delete(`http://192.168.1.164:5000/v1/removeShoppingItem/:${id}`).then(response => {
+                    axios.delete(`http://localhost:5000/v1/removeShoppingItem/:${id}`).then(response => {
                         console.log(response);
                         console.log(id);
                         
