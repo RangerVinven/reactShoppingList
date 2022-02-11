@@ -7,6 +7,11 @@ const path = require("path");
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded());
+app.use((req, res) => {
+    res.header('Access-Control-Allow-Origin', "*");
+    res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+});
 
 MongoClient.connect("mongodb+srv://Admin:oR3I2IU2wH8TuRkcuJLvxh9PEK0IIvPbCe6c@shoppinglist.vyimj.mongodb.net/shoppingList", (err, client) => {
     if (err) return console.log(err);
