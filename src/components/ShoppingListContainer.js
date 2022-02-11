@@ -26,7 +26,7 @@ class ShoppingListContainer extends React.Component {
         const axios = require('axios').default;
         axios.get("http://localhost:5000/v1/getShoppingList", {
             headers: {
-                "Access-Control-Allow-Origin": "*"
+                
             }
         }).then(response => {
             const shoppingListItems = response.data;
@@ -43,6 +43,10 @@ class ShoppingListContainer extends React.Component {
     addToDatabase = (name, itemAmount, itemId) => {
         const axios = require('axios').default;
         axios.post("http://localhost:5000/v1/addToDatabase", {
+            headers: {
+                "Access-Control-Allow-Origin": "*"
+            }
+        }, {
             _id: itemId,
             amount: itemAmount,
             itemName: name,
@@ -67,6 +71,10 @@ class ShoppingListContainer extends React.Component {
         // });
 
         axios.delete("http://localhost:5000/v1/removeShoppingItem", {
+            headers: {
+                "Access-Control-Allow-Origin": "*"
+            }
+        }, {
             _id: itemId
         }).then(response => {
             console.log(response);
@@ -113,13 +121,21 @@ class ShoppingListContainer extends React.Component {
                 const axios = require('axios').default;
                 
                 if(item.got) {
-                    axios.put(`http://localhost:5000/v1/changeGot/:${itemId}/true`).then(response => {
+                    axios.put(`http://localhost:5000/v1/changeGot/:${itemId}/true`, {
+                        headers: {
+                            "Access-Control-Allow-Origin": "*"
+                        }
+                    }).then(response => {
                     console.log("Called");
                     }).catch(err => {
                         console.log(err);
                     });
                 } else {
-                    axios.put(`http://localhost:5000/v1/changeGot/:${itemId}/false`).then(response => {
+                    axios.put(`http://localhost:5000/v1/changeGot/:${itemId}/false`, {
+                        headers: {
+                            "Access-Control-Allow-Origin": "*"
+                        }
+                    }).then(response => {
                     console.log("Called");
                     }).catch(err => {
                         console.log(err);
@@ -147,7 +163,11 @@ class ShoppingListContainer extends React.Component {
 
                 // Calls the api to update the amount in the database
                 const axios = require('axios').default;
-                axios.put(`http://localhost:5000/v1/changeAmount/:${id}/${item.amount}`).then(response => {
+                axios.put(`http://localhost:5000/v1/changeAmount/:${id}/${item.amount}`, {
+                    headers: {
+                        "Access-Control-Allow-Origin": "*"
+                    }
+                }).then(response => {
                     console.log("Called");
                 }).catch(err => {
                     console.log(err);
@@ -182,7 +202,11 @@ class ShoppingListContainer extends React.Component {
 
                     // Calls the api to update the amount in the database
                     const axios = require('axios').default;
-                    axios.put(`http://localhost:5000/v1/changeAmount/:${id}/${item.amount}`).then(response => {
+                    axios.put(`http://localhost:5000/v1/changeAmount/:${id}/${item.amount}`, {
+                        headers: {
+                            "Access-Control-Allow-Origin": "*"
+                        }
+                    }).then(response => {
                         console.log("Called");
                     }).catch(err => {
                         console.log(err);
@@ -192,7 +216,11 @@ class ShoppingListContainer extends React.Component {
                     newShoppingList.splice(index, 1);
                     
                     const axios = require('axios').default;
-                    axios.delete(`http://localhost:5000/v1/removeShoppingItem/:${id}`).then(response => {
+                    axios.delete(`http://localhost:5000/v1/removeShoppingItem/:${id}`, {
+                        headers: {
+                            "Access-Control-Allow-Origin": "*"
+                        }
+                    }).then(response => {
                         console.log(response);
                         console.log(id);
                         
