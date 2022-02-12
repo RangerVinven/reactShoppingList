@@ -7,11 +7,20 @@ const app = express();
 // app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded());
-// app.use((req, res) => {
-//     res.header('Access-Control-Allow-Origin', "*");
-//     res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE');
-//     res.header('Access-Control-Allow-Headers', 'Content-Type');
-// });
+
+// Sets the headers for the API
+app.use((req, res) => {
+     // Website you wish to allow to connect
+     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:*');
+
+     // Request methods you wish to allow
+     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+ 
+     // Request headers you wish to allow
+     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+ 
+     res.setHeader('Access-Control-Allow-Credentials', false);
+});
 
 MongoClient.connect("mongodb+srv://Admin:oR3I2IU2wH8TuRkcuJLvxh9PEK0IIvPbCe6c@shoppinglist.vyimj.mongodb.net/shoppingList", (err, client) => {
     if (err) return console.log(err);
