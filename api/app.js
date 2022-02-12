@@ -1,26 +1,19 @@
 const express = require("express");
 const MongoClient = require("mongodb").MongoClient;
-// const cors = require('cors');
+ const cors = require('cors');
 const app = express();
 // const path = require("path");
 
-// app.use(cors());
+
+let corsOptions = {
+    origin: 'http://localhost:8080',
+    optionsSuccessStatus: 200,
+    methods: "GET, PUT"
+}
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded());
-
-// Sets the headers for the API
-app.use((req, res) => {
-     // Website you wish to allow to connect
-     res.setHeader('Access-Control-Allow-Origin', 'https://localhost:*');
-
-     // Request methods you wish to allow
-     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
- 
-     // Request headers you wish to allow
-     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
- 
-     res.setHeader('Access-Control-Allow-Credentials', false);
-});
 
 MongoClient.connect("mongodb+srv://Admin:oR3I2IU2wH8TuRkcuJLvxh9PEK0IIvPbCe6c@shoppinglist.ko151.mongodb.net/shoppingList", (err, client) => {
     if (err) return console.log(err);
