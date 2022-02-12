@@ -18,15 +18,13 @@ class ShoppingListContainer extends React.Component {
 
     // Updates the state to what's in the database
     componentDidMount() {
-        console.log("Hello");
         this.getShoppingList();
     }
 
     getShoppingList = () => {
         const axios = require('axios').default;
-        axios.get("https://localhost:5000/v1/getShoppingList").then(response => {
+        axios.get("https://localhost:5000/v1/getShoppingList", { crossDomain: true }).then(response => {
             const shoppingListItems = response.data;
-            console.log(shoppingListItems);
 
             this.setState({
                 shoppingList: shoppingListItems
@@ -38,7 +36,7 @@ class ShoppingListContainer extends React.Component {
 
     addToDatabase = (name, itemAmount, itemId) => {
         const axios = require('axios').default;
-        axios.post("https://localhost:5000/v1/addToDatabase", {
+        axios.post("https://localhost:5000/v1/addToDatabase", { crossDomain: true }, {
             _id: itemId,
             amount: itemAmount,
             itemName: name,
@@ -62,7 +60,7 @@ class ShoppingListContainer extends React.Component {
         //     console.log(err);
         // });
 
-        axios.delete("https://localhost:5000/v1/removeShoppingItem", {
+        axios.delete("https://localhost:5000/v1/removeShoppingItem", { crossDomain: true }, {
             _id: itemId
         }).then(response => {
             console.log(response);
@@ -109,13 +107,13 @@ class ShoppingListContainer extends React.Component {
                 const axios = require('axios').default;
                 
                 if(item.got) {
-                    axios.put(`https://localhost:5000/v1/changeGot/:${itemId}/true`).then(response => {
+                    axios.put(`https://localhost:5000/v1/changeGot/:${itemId}/true`, { crossDomain: true }).then(response => {
                     console.log("Called");
                     }).catch(err => {
                         console.log(err);
                     });
                 } else {
-                    axios.put(`https://localhost:5000/v1/changeGot/:${itemId}/false`).then(response => {
+                    axios.put(`https://localhost:5000/v1/changeGot/:${itemId}/false`, { crossDomain: true }).then(response => {
                     console.log("Called");
                     }).catch(err => {
                         console.log(err);
@@ -143,7 +141,7 @@ class ShoppingListContainer extends React.Component {
 
                 // Calls the api to update the amount in the database
                 const axios = require('axios').default;
-                axios.put(`https://localhost:5000/v1/changeAmount/:${id}/${item.amount}`).then(response => {
+                axios.put(`https://localhost:5000/v1/changeAmount/:${id}/${item.amount}`, { crossDomain: true }).then(response => {
                     console.log("Called");
                 }).catch(err => {
                     console.log(err);
@@ -178,7 +176,7 @@ class ShoppingListContainer extends React.Component {
 
                     // Calls the api to update the amount in the database
                     const axios = require('axios').default;
-                    axios.put(`https://localhost:5000/v1/changeAmount/:${id}/${item.amount}`).then(response => {
+                    axios.put(`https://localhost:5000/v1/changeAmount/:${id}/${item.amount}`, { crossDomain: true }).then(response => {
                         console.log("Called");
                     }).catch(err => {
                         console.log(err);
@@ -188,7 +186,7 @@ class ShoppingListContainer extends React.Component {
                     newShoppingList.splice(index, 1);
                     
                     const axios = require('axios').default;
-                    axios.delete(`https://localhost:5000/v1/removeShoppingItem/:${id}`).then(response => {
+                    axios.delete(`https://localhost:5000/v1/removeShoppingItem/:${id}`, { crossDomain: true }).then(response => {
                         console.log(response);
                         console.log(id);
                         

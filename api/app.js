@@ -5,17 +5,17 @@ const app = express();
 // const path = require("path");
 
 
-let corsOptions = {
-    origin: 'https://localhost:80',
-    optionsSuccessStatus: 200,
-    methods: "GET, PUT"
-}
+// let corsOptions = {
+//     origin: 'https://localhost:80',
+//     optionsSuccessStatus: 200,
+//     methods: "GET, PUT"
+// }
 
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded());
 
-MongoClient.connect("mongodb+srv://Admin:oR3I2IU2wH8TuRkcuJLvxh9PEK0IIvPbCe6c@shoppinglist.ko151.mongodb.net/shoppingList", (err, client) => {
+MongoClient.connect("mongodb+srv://Admin:oR3I2IU2wH8TuRkcuJLvxh9PEK0IIvPbCe6c@shoppinglist.ko15l.mongodb.net/shoppingList", (err, client) => {
     if (err) return console.log(err);
     console.log("Connected to database");
 
