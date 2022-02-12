@@ -6,7 +6,7 @@ const app = express();
 
 
 let corsOptions = {
-    origin: 'http://localhost:8080',
+    origin: 'https://localhost:80',
     optionsSuccessStatus: 200,
     methods: "GET, PUT"
 }
