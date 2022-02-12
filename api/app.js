@@ -22,7 +22,7 @@ app.use((req, res) => {
      res.setHeader('Access-Control-Allow-Credentials', false);
 });
 
-MongoClient.connect("mongodb+srv://Admin:oR3I2IU2wH8TuRkcuJLvxh9PEK0IIvPbCe6c@shoppinglist.vyimj.mongodb.net/shoppingList", (err, client) => {
+MongoClient.connect("mongodb+srv://Admin:oR3I2IU2wH8TuRkcuJLvxh9PEK0IIvPbCe6c@shoppinglist.ko151.mongodb.net/shoppingList", (err, client) => {
     if (err) return console.log(err);
     console.log("Connected to database");
 
