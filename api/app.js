@@ -1,6 +1,6 @@
 const express = require("express");
 const MongoClient = require("mongodb").MongoClient;
- const cors = require('cors');
+// const cors = require('cors');
 const app = express();
 // const path = require("path");
 
@@ -11,9 +11,9 @@ const app = express();
 //     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
 // };
 
-app.use(cors({
-    origin: "*"
-}));
+// app.use(cors({
+//     origin: "*"
+// }));
 app.use(express.json());
 app.use(express.urlencoded());
 
@@ -35,6 +35,7 @@ MongoClient.connect("mongodb+srv://Admin:oR3I2IU2wH8TuRkcuJLvxh9PEK0IIvPbCe6c@sh
 
     // Gets the entire shopping list
     app.get("/v1/getShoppingList", (req, res) => {
+        res.set("Access-Control-Allow-Origin", "*");
         shoppingListCollection.find().toArray((err, items) => {
             res.send(items);
         });
