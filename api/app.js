@@ -5,13 +5,15 @@ const app = express();
 // const path = require("path");
 
 
-let allowCrossDomain = (req, res) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
-};
+// let allowCrossDomain = (req, res) => {
+//     res.header('Access-Control-Allow-Origin', '*');
+//     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+//     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+// };
 
-app.use(cors(allowCrossDomain()));
+app.use(cors({
+    origin: "*"
+}));
 app.use(express.json());
 app.use(express.urlencoded());
 
