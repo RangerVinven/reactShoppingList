@@ -1,8 +1,8 @@
-const express = require("express");
-const MongoClient = require("mongodb").MongoClient;
-// const cors = require('cors');
+import express from "express";
+import { MongoClient } from "mongodb";
+import cors from "cors";
+
 const app = express();
-// const path = require("path");
 
 
 // let allowCrossDomain = (req, res) => {
@@ -11,9 +11,10 @@ const app = express();
 //     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
 // };
 
-// app.use(cors({
-//     origin: "*"
-// }));
+app.use(cors({
+    origin: "*"
+}));
+
 app.use(express.json());
 app.use(express.urlencoded());
 
@@ -27,6 +28,8 @@ MongoClient.connect("mongodb+srv://Admin:oR3I2IU2wH8TuRkcuJLvxh9PEK0IIvPbCe6c@sh
 
     // Post request for adding to the database
     app.post("/v1/addToDatabase", (req, res) => {
+        // res.set("Access-Control-Allow-Origin", "*");
+        // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         shoppingListCollection.insertOne(req.body).then(result => {
             console.log(result);
         }).catch(error => console.log(error));
@@ -35,7 +38,8 @@ MongoClient.connect("mongodb+srv://Admin:oR3I2IU2wH8TuRkcuJLvxh9PEK0IIvPbCe6c@sh
 
     // Gets the entire shopping list
     app.get("/v1/getShoppingList", (req, res) => {
-        res.set("Access-Control-Allow-Origin", "*");
+        // res.set("Access-Control-Allow-Origin", "*");
+        // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         shoppingListCollection.find().toArray((err, items) => {
             res.send(items);
         });
@@ -43,7 +47,8 @@ MongoClient.connect("mongodb+srv://Admin:oR3I2IU2wH8TuRkcuJLvxh9PEK0IIvPbCe6c@sh
 
     // Deletes the shopping list item
     app.delete("/v1/removeShoppingItem/:id", (req, res) => {
-        console.log("Test");
+        // res.set("Access-Control-Allow-Origin", "*");
+        // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         console.log(req.params.id);
         shoppingListCollection.deleteOne({"_id": Number(req.params.id.replace(":", ""))});
         res.sendStatus(200);
@@ -51,6 +56,8 @@ MongoClient.connect("mongodb+srv://Admin:oR3I2IU2wH8TuRkcuJLvxh9PEK0IIvPbCe6c@sh
 
     // Changes the amount for the item with the id that's passed in
     app.put("/v1/changeAmount/:id/:newAmount", (req, res) => {
+        // res.set("Access-Control-Allow-Origin", "*");
+        // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         console.log(req.params.id);
         console.log(req.params.newAmount);
         shoppingListCollection.updateOne({
@@ -65,6 +72,8 @@ MongoClient.connect("mongodb+srv://Admin:oR3I2IU2wH8TuRkcuJLvxh9PEK0IIvPbCe6c@sh
 
     // Changes the got of the item with the id that's passed in
     app.put("/v1/changeGot/:id/:newGot", (req, res) => {
+        // res.set("Access-Control-Allow-Origin", "*");
+        // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         console.log(req.params.newGot);
         console.log(req.params.id.replace(":", ""));
         let newGot;
@@ -91,4 +100,4 @@ MongoClient.connect("mongodb+srv://Admin:oR3I2IU2wH8TuRkcuJLvxh9PEK0IIvPbCe6c@sh
 
 });
 
-app.listen(5000);
+app.listen(process.env.PORT || 3000);
