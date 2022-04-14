@@ -1,5 +1,6 @@
 import React from "react";
 import "../App.css";
+import axios from "axios";
 
 import Header from "./Header";
 import ShoppingList from "./ShoppingList";
@@ -22,7 +23,6 @@ class ShoppingListContainer extends React.Component {
     }
 
     getShoppingList = () => {
-        const axios = require('axios').default;
         axios.get("https://daniels-shopping-list-backend.herokuapp.com/v1/getShoppingList").then(response => {
             const shoppingListItems = response.data;
 
@@ -35,7 +35,6 @@ class ShoppingListContainer extends React.Component {
     }
 
     addToDatabase = (name, itemAmount, itemId) => {
-        const axios = require('axios').default;
         axios.post("https://daniels-shopping-list-backend.herokuapp.com/v1/addToDatabase", {
             _id: itemId,
             amount: itemAmount,
@@ -49,8 +48,6 @@ class ShoppingListContainer extends React.Component {
     }
 
     removeFromDatabase = itemId => {
-        const axios = require('axios').default;
-
         axios.delete("https://daniels-shopping-list-backend.herokuapp.com/v1/removeShoppingItem", {
             _id: itemId
         }).then(response => {
@@ -94,9 +91,7 @@ class ShoppingListContainer extends React.Component {
             if(item._id === itemId) {
                 item.got = !item.got;
 
-                // Calls the api to update the amount in the database
-                const axios = require('axios').default;
-                
+                // Calls the api to update the amount in the database                
                 if(item.got) {
                     axios.put(`https://daniels-shopping-list-backend.herokuapp.com/v1/changeGot/:${itemId}/true`).then(response => {
                     console.log("Called");
@@ -131,7 +126,6 @@ class ShoppingListContainer extends React.Component {
                 item.amount++;
 
                 // Calls the api to update the amount in the database
-                const axios = require('axios').default;
                 axios.put(`https://daniels-shopping-list-backend.herokuapp.com/v1/changeAmount/:${id}/${item.amount}`).then(response => {
                     console.log("Called");
                 }).catch(err => {
@@ -166,7 +160,6 @@ class ShoppingListContainer extends React.Component {
                     item.amount--;
 
                     // Calls the api to update the amount in the database
-                    const axios = require('axios').default;
                     axios.put(`https://daniels-shopping-list-backend.herokuapp.com/v1/changeAmount/:${id}/${item.amount}`).then(response => {
                         console.log("Called");
                     }).catch(err => {
@@ -175,8 +168,7 @@ class ShoppingListContainer extends React.Component {
                 
                 } else {
                     newShoppingList.splice(index, 1);
-                    
-                    const axios = require('axios').default;
+
                     axios.delete(`https://daniels-shopping-list-backend.herokuapp.com/v1/removeShoppingItem/:${id}`).then(response => {
                         console.log(response);
                         console.log(id);
