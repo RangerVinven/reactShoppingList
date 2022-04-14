@@ -17,7 +17,7 @@ function ShoppingListItem(props) {
     // Adds to the amount
     function addToAmount() {
         props.incrementAmount(props.shoppingItem._id);const axios = require('axios').default;
-        axios.get("http://192.168.1.164:5000/v1/getShoppingList").then(response => {
+        axios.get("https://daniels-shopping-list-backend.herokuapp.com/v1/getShoppingList").then(response => {
             const shoppingListItems = response.data;
             console.log(shoppingListItems);
 
