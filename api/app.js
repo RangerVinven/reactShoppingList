@@ -18,7 +18,7 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded());
 
-MongoClient.connect("mongodb+srv://Admin:oR3I2IU2wH8TuRkcuJLvxh9PEK0IIvPbCe6c@shoppinglist.ko15l.mongodb.net/shoppingList", (err, client) => {
+MongoClient.connect(process.env.DATABASE_URL, (err, client) => {
     if (err) return console.log(err);
     console.log("Connected to database");
 
